@@ -4,6 +4,9 @@ const todo = require("./db");
 const app = express();
 app.use(express.json());
 
+const cors=require("cors");
+app.use(cors());
+
 // Post the Todo
 app.post("/todo", async function (req, res) {
     const payload = req.body; // Fix variable name
