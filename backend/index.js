@@ -1,10 +1,11 @@
 const express =require("express");
 const { createTodo, updateTodo } = require("./type");
+const todo = require("./db");
 const app=express();
 app.use(express.json);
 
 //Post the Todo
-app.post("/todo",function(req,res){
+app.post("/todo",async function(req,res){
     const payload=res.body;
     const parse=createTodo.safeParse(payload);
     if(!parse.success){
@@ -14,20 +15,31 @@ app.post("/todo",function(req,res){
         return;
     }
     //put in mongodb
+    await todo.create({
+        title:payload.title,
+        description:payload.description,
+        completed:false
+    })
+    res.json({
+        msg:"created TODO successfully!!"
+    })
 })
 
 //Get the Todo
 
-app.get("/todo",function(req,res){
-    
+app.get("/todo",async function(req,res){
+    const todos=await todo.find({});
+    res.json({
+        todos
+    })
 })
 
 
 //Put Complition
 
-app.post("/completed",function(req,res){
-    const id=re.body;
-    const parseid=updateTodo.safeParse(id);
+app.post("/completed",async function(req,res){
+    const updating=re.body;
+    const parseid=updateTodo.safeParse(updating);
     if (!parseid.success){
         res.status(404).json({
             msg:"id not found!!"
@@ -35,4 +47,12 @@ app.post("/completed",function(req,res){
         return;
     }
     //updare in mongodb
+    await todo.update({
+        _id:req.body.id
+    },{
+        completed:true
+    })
+    res.json({
+        msg:"task completed successfully!!"
+    })
 })
