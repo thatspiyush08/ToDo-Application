@@ -10,6 +10,6 @@ const todoSchema=mongoose.Schema({
 
 });
 
-const todo=mongoose.model('todos',)
+const todo=mongoose.model('todos',todoSchema)
 
 module.exports=todo;
