@@ -33,14 +33,20 @@ export function CreateTodo() {
   };
 
   return (
-    <div className="newTodo">
+    <div className="card">
       <input
         id="title"
         type="text"
         style={{
           margin: 10,
-          padding: 10,
-          borderRadius: 5,
+          padding: '0.6em 1.2em', // adjusted padding
+          borderRadius: 8, // adjusted border radius
+          border: '1px solid transparent', // added border
+          fontSize: '1em', // adjusted font size
+          fontWeight: 500,
+          fontFamily: 'inherit',
+          backgroundColor: '#1a1a1a', // adjusted background color
+          color: '#fff', // adjusted text color
         }}
         placeholder="Title.."
         value={title}
@@ -51,19 +57,33 @@ export function CreateTodo() {
         id="desc"
         style={{
           margin: 10,
-          padding: 10,
-          paddingRight: 90,
-          borderRadius: 5,
+          padding: '0.6em 1.2em', // adjusted padding
+          borderRadius: 8, // adjusted border radius
+          border: '1px solid transparent', // added border
+          fontSize: '1em', // adjusted font size
+          fontWeight: 500,
+          fontFamily: 'inherit',
+          backgroundColor: '#1a1a1a', // adjusted background color
+          color: '#fff', // adjusted text color
         }}
         placeholder="Description.."
         value={description}
         onChange={handleDescriptionChange}
       />
       <button
-        className="card"
+        className="add-button"
         style={{
           margin: 10,
-          padding: 10,
+          padding: '0.6em 1.2em', // adjusted padding
+          borderRadius: 8, // adjusted border radius
+          border: '1px solid transparent', // added border
+          fontSize: '1em', // adjusted font size
+          fontWeight: 500,
+          fontFamily: 'inherit',
+          backgroundColor: '#1a1a1a', // adjusted background color
+          color: '#fff', // adjusted text color
+          cursor: 'pointer', // added cursor
+          transition: 'border-color 0.25s', // added transition
         }}
         onClick={handleAddTodo}
       >
